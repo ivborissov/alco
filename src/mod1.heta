@@ -26,6 +26,6 @@ namespace mod1 begin
     q_a [adm4]= q_a + dose_last * body_weight;
 
     body_weight @Const {units: kg} = 70;
-    dose_first @Const {units: g/kg} = 0.186; // g/kg
-    dose_last @Const  {units: g/kg} = 0.112; // g/kg
+    dose_first @Const {units: g/kg} = 0.186;
+    dose_last @Const  {units: g/kg} = 0.112;
 end
