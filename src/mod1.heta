@@ -5,7 +5,7 @@ namespace mod1 begin
     blood @Compartment {units: L} .= Vd * body_weight;
 
     q_a @Species {compartment: gut, isAmount: true, units: g} .= 0;
-    C @Species {compartment: blood, units: g/L} .= 0;
+    C @Species {compartment: blood, units: g/L, output: true} .= 0;
 
     vabs @Reaction { actors: q_a => C, units: g/h } := k_a * q_a;
     vel @Reaction { actors: C =>, units: g/h } := Vmax * C / (Km + C) * blood;

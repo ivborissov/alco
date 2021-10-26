@@ -4,6 +4,8 @@
 // add qsp units
 include ./qsp-units.heta
 
+#setNS { type: abstract };
+
 include mod1.heta
 include mod2.heta
 include mod3.heta
