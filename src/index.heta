@@ -5,15 +5,15 @@
 include ./qsp-units.heta
 
 include mod1.heta
-// include mod3.heta
+include mod3.heta
 
 // exports
 #export { format: JSON, filepath: output };
+#export { format: DBSolve, filepath: dbsolve_1, spaceFilter: mod1};
+#export { format: DBSolve, filepath: dbsolve_3, spaceFilter: mod3};
 //#export { format: YAML, filepath: output };
 //#export { format: XLSX, filepath: table, omitRows: 3, splitByClass: true };
 //#export { format: SBML, filepath: sbml, version: L2V4 };
-//#export { format: SLV, filepath: model, eventsOff: false };
-//#export { format: DBSolve, filepath: dbsolve };
 //#export { format: Simbio, filepath: simbio };
 //#export { format: Mrgsolve, filepath: mrgsolve };
 //#export { format: Matlab, filepath: matlab };

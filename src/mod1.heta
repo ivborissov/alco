@@ -2,7 +2,7 @@ namespace mod1 begin
     t {units: h};
 
     gut @Compartment {units: L} .= 1; // not used
-    blood @Compartment {units: L} .= Vd; // L/kg
+    blood @Compartment {units: L} .= Vd * body_weight;
 
     q_a @Species {compartment: gut, isAmount: true, units: g} .= 0;
     C @Species {compartment: blood, units: g/L} .= 0;
@@ -11,12 +11,21 @@ namespace mod1 begin
     vel @Reaction { actors: C =>, units: g/h } := Vmax * C / (Km + C) * blood;
 
     k_a @Const {units: 1/h} = 0.062;
-    Vd @Const {units: L} = 0.457; // L/kg
+    Vd @Const {units: L/kg} = 0.457;
     Vmax @Const {units: g/L/h} = 0.136;
     Km @Const {units: g/L} = 0.096;
 
-    dose1 @TimeSwitcher {start: 0};
-    dose2 @TimeSwitcher {start: 0.333};
-    dose3 @TimeSwitcher {start: 0.667};
-    dose4 @TimeSwitcher {start: 1.5};
+    adm1 @TimeSwitcher {start: 0};
+    adm2 @TimeSwitcher {start: 0.333};
+    adm3 @TimeSwitcher {start: 0.667};
+    adm4 @TimeSwitcher {start: 1.5};
+
+    q_a [adm1]= q_a + dose_first * body_weight; 
+    q_a [adm2]= q_a + dose_first * body_weight;
+    q_a [adm3]= q_a + dose_first * body_weight;
+    q_a [adm4]= q_a + dose_last * body_weight;
+
+    body_weight @Const {units: kg} = 70;
+    dose_first @Const {units: g/kg} = 0.186; // g/kg
+    dose_last @Const  {units: g/kg} = 0.112; // g/kg
 end
