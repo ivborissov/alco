@@ -1,0 +1,22 @@
+namespace mod1 begin
+    t {units: h};
+
+    gut @Compartment {units: L} .= 1; // not used
+    blood @Compartment {units: L} .= Vd; // L/kg
+
+    q_a @Species {compartment: gut, isAmount: true, units: g} .= 0;
+    C @Species {compartment: blood, units: g/L} .= 0;
+
+    vabs @Reaction { actors: q_a => C, units: g/h } := k_a * q_a;
+    vel @Reaction { actors: C =>, units: g/h } := Vmax * C / (Km + C) * blood;
+
+    k_a @Const {units: 1/h} = 0.062;
+    Vd @Const {units: L} = 0.457; // L/kg
+    Vmax @Const {units: g/L/h} = 0.136;
+    Km @Const {units: g/L} = 0.096;
+
+    dose1 @TimeSwitcher {start: 0};
+    dose2 @TimeSwitcher {start: 0.333};
+    dose3 @TimeSwitcher {start: 0.667};
+    dose4 @TimeSwitcher {start: 1.5};
+end

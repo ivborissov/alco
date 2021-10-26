@@ -1,0 +1,12 @@
+{
+  "builderVersion": "^0.6.6",
+  "id": "alco",
+  "notes": "Simple model of alcohol PK build on published data",
+  "version": "v0.1.0",
+  "license": "MIT",
+  "options": {"unitsCheck": true},
+  "importModule": {
+    "type": "heta",
+    "source": "src/index.heta"
+  }
+}
