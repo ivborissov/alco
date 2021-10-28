@@ -10,6 +10,7 @@ add_measurements!(p, data)
 
 # initial plot
 sim(p) |> plot
+sim(p, parameters_upd = [:Vmax=>0.3, :ke=>0., :k_a=>5.]) |> plot
 
 # fitting 1 best -96.12
 params_df_1 = read_parameters("./julia/parameters-1.csv")

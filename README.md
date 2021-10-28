@@ -1,9 +1,7 @@
 # alco
 
-
 [![Heta project](https://img.shields.io/badge/%CD%B1-Heta_project-blue)](https://hetalang.github.io/)
 [![GitHub license](https://img.shields.io/github/license/insysbio/alco.svg)](https://github.com/insysbio/alco/blob/master/LICENSE)
-[![DOI:10.1111/j.1530-0277.2000.tb02103.x](https://zenodo.org/badge/DOI/10.1111/j.1530-0277.2000.tb02103.x.svg)](https://doi.org/10.1111/j.1530-0277.2000.tb02103.x)
 
 _Simple model of alcohol PK build on published data_
 
