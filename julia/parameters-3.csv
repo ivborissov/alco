@@ -1,0 +1,7 @@
+parameter,scale,lower,upper,nominal,estimate
+Vd,lin,1e-6,1e6,0.457,1
+Vmax,lin,1e-6,1e6,0.136,1
+Km,lin,1e-6,1e6,0.096,1
+k_a,lin,1e-6,1e6,0.062,1
+ke,lin,1e-6,1e6,0.011,1
+t_sw,lin,1,10,2.6,1
