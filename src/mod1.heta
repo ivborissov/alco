@@ -10,7 +10,7 @@ namespace mod1 begin
     BrAC @Record {units: g/L, output: true} := C / 1;
 
     vabs @Reaction { actors: q_a => C, units: g/h } := k_a * q_a;
-    vel @Reaction { actors: C =>, units: g/h } := Vmax * C / (Km + C) * blood;
+    vel @Reaction { actors: C =>, units: g/h } := Vmax * C / (Km + abs(C)) * blood;
 
     k_a @Const {units: 1/h} = 0.062;
     Vd @Const {units: L/kg} = 0.457;

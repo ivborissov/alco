@@ -1,7 +1,8 @@
 namespace mod3 begin
     #importNS {fromSpace: mod1};
-
-    vel := t < t_sw ? ke * C * blood : Vmax * C / (Km + C) * blood;
+    
+    // abs(C) here changes the result but it shouldn't
+    vel := t < t_sw ? ke * C * blood : Vmax * C / (Km + abs(C)) * blood;
 
     t_sw @Const {units: h} = 2.6;
     ke @Const {units: 1/h} = 0.011;

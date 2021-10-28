@@ -1,7 +1,7 @@
 namespace mod2 begin
     #importNS {fromSpace: mod1};
 
-    vel := ke * C * blood + Vmax * C / (Km + C) * blood;
+    vel := ke * C * blood + Vmax * C / (Km + abs(C)) * blood;
 
     ke @Const {units: 1/h} = 0.011;
 end
