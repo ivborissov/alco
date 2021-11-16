@@ -30,4 +30,9 @@ namespace mod1 begin
     body_weight @Const {units: kg} = 70;
     dose_first @Const {units: g/kg} = 0.186;
     dose_last @Const  {units: g/kg} = 0.112;
+
+    sigma_add @Const = 0.1;
+    sigma_add2 @Record {output: true} := sigma_add;
+    //sigma_prop @Const = 0;
+    //sigma_sq @Record {output: true} := sigma_add^2 + BrAC^2 * sigma_prop^2;
 end
