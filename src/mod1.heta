@@ -12,10 +12,10 @@ namespace mod1 begin
     vabs @Reaction { actors: q_a => C, units: g/h } := k_a * q_a;
     vel @Reaction { actors: C =>, units: g/h } := Vmax * C / (Km + abs(C)) * blood;
 
-    k_a @Const {units: 1/h} = 0.062;
-    Vd @Const {units: L/kg} = 0.457;
-    Vmax @Const {units: g/L/h} = 0.136;
-    Km @Const {units: g/L} = 0.096;
+    k_a @Const {units: 1/h} = 0.062; // 8.33
+    Vd @Const {units: L/kg} = 0.457; // 0.58
+    Vmax @Const {units: g/L/h} = 0.136; // 0.26
+    Km @Const {units: g/L} = 0.096; // 0.092
 
     adm1 @TimeSwitcher {start: 0};
     adm2 @TimeSwitcher {start: 0.333};
@@ -31,8 +31,7 @@ namespace mod1 begin
     dose_first @Const {units: g/kg} = 0.186;
     dose_last @Const  {units: g/kg} = 0.112;
 
-    sigma_add @Const = 0.1;
-    sigma_add2 @Record {output: true} := sigma_add;
-    //sigma_prop @Const = 0;
-    //sigma_sq @Record {output: true} := sigma_add^2 + BrAC^2 * sigma_prop^2;
+    sigma_add @Const = 0.1; // 6.8e-7
+    sigma_prop @Const = 0; // 0.081
+    sigma1 @Record {output: true} := sqrt(sigma_add^2 + BrAC^2 * sigma_prop^2);
 end
