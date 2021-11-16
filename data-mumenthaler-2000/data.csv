@@ -1,4 +1,4 @@
-t,scenario,prob.mean,measurement,xxx,prob.sigma
+t,scenario,prob.mean,measurement,prob.sigma,xxx
 0.32,scn1,BrAC,0.209302326,0.109302326,0.011946998
 0.65,scn1,BrAC,0.465116279,0.174418605,0.03042185
 0.92,scn1,BrAC,0.653488372,0.181395349,0.032904273

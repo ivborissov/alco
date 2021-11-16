@@ -13,19 +13,19 @@ The model and data were reconstructed from the article:
 
 ### Model 1
 
-best F = -96.12
+best F = -63.45
 
 ![scn1_best](diagnostics/scn1_best.png)
 
 ### Model 2
 
-best F = -102.04
+best F = -63.64
 
 ![scn2_best](diagnostics/scn2_best.png)
 
 ### Model 3
 
-best F = -126.25
+best F = -63.92
 
 ![scn3_best](diagnostics/scn3_best.png)
 

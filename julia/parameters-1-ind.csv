@@ -3,3 +3,5 @@ Vd,log,1e-6,1e6,0.457,1
 Vmax,log,1e-6,1e6,0.136,1
 Km,log,1e-6,1e6,0.096,1
 k_a,log,1e-6,1e6,0.062,1
+sigma_add,log,1e-6,1e6,0.1,1
+sigma_prop,log,1e-9,1e9,1e-3,1

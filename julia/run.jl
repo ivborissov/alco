@@ -12,26 +12,26 @@ add_measurements!(p, data)
 sim(p) |> plot
 sim(p, parameters_upd = [:Vmax=>0.3, :ke=>0., :k_a=>5.]) |> plot
 
-# fitting 1 best -96.12
+# fitting 1 best -63.45
 params_df_1 = read_parameters("./julia/parameters-1.csv")
-res_fit_1 = fit(p, params_df_1; scenarios=[:scn1])
-res_fit_1 = fit(p, optim(res_fit_1); scenarios=[:scn1])
+res_fit_1 = fit(p, params_df_1; scenarios=[:scn1], ftol_abs=1e-6, ftol_rel=0.)
+res_fit_1 = fit(p, optim(res_fit_1); scenarios=[:scn1], ftol_abs=1e-6, ftol_rel=0.)
 fig = sim(p, scenarios=[:scn1], parameters_upd=optim(res_fit_1)) |> plot
 # savefig(fig, "diagnostics/scn1_best.png")
 
 
-# fitting 2 best -102.04
+# fitting 2 best -63.64
 params_df_2 = read_parameters("./julia/parameters-2.csv")
-res_fit_2 = fit(p, params_df_2; scenarios=[:scn2])
-res_fit_2 = fit(p, optim(res_fit_2); scenarios=[:scn2])
+res_fit_2 = fit(p, params_df_2; scenarios=[:scn2], ftol_abs=1e-6, ftol_rel=0.)
+res_fit_2 = fit(p, optim(res_fit_2); scenarios=[:scn2], ftol_abs=1e-6, ftol_rel=0.)
 fig = sim(p, scenarios=[:scn2], parameters_upd=optim(res_fit_2)) |> plot
 # savefig(fig, "diagnostics/scn2_best.png")
 
 
-# fitting 3 best -102.97
+# fitting 3 best -63.92
 params_df_3 = read_parameters("./julia/parameters-3.csv")
-res_fit_3 = fit(p, params_df_3; scenarios=[:scn3])
-res_fit_3 = fit(p, optim(res_fit_3); scenarios=[:scn3])
+res_fit_3 = fit(p, params_df_3; scenarios=[:scn3], ftol_abs=1e-6, ftol_rel=0.)
+res_fit_3 = fit(p, optim(res_fit_3); scenarios=[:scn3], ftol_abs=1e-6, ftol_rel=0.)
 fig = sim(p, scenarios=[:scn3], parameters_upd=optim(res_fit_3)) |> plot
 # savefig(fig, "diagnostics/scn3_best.png")
 
