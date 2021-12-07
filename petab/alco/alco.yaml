@@ -1,0 +1,11 @@
+format_version: 1
+parameter_file: parameters_alco.tsv
+problems:
+- condition_files:
+  - experimentalCondition_alco.tsv
+  measurement_files:
+  - measurementData_alco.tsv
+  observable_files:
+  - observables_alco.tsv
+  sbml_files:
+  - model_alco.xml

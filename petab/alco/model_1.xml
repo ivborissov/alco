@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<sbml 
+  xmlns="http://www.sbml.org/sbml/level2/version4" 
+  xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+  level="2" version="4"
+  >
+  <model
+    id="mod1" 
+    metaid="mod1"
+    >
+    
+    <listOfCompartments>
+      <compartment
+        id="gut"
+        constant="false"
+        size="1"
+        units="_L"
+        metaid="mod1::gut"
+        >
+      </compartment>
+      <compartment
+        id="blood"
+        constant="false"
+        units="_L"
+        metaid="mod1::blood"
+        >
+      </compartment>
+    </listOfCompartments>
+  
+    <listOfSpecies>
+      <species
+        id="q_a"
+        compartment="gut"
+        constant="false"
+        boundaryCondition="false"
+        hasOnlySubstanceUnits="true"
+        initialAmount="0"
+        substanceUnits="_g"
+        metaid="mod1::q_a"
+        >
+      </species>
+      <species
+        id="C"
+        compartment="blood"
+        constant="false"
+        boundaryCondition="false"
+        hasOnlySubstanceUnits="false"
+        initialConcentration="0"
+        substanceUnits="_g"
+        metaid="mod1::C"
+        >
+      </species>
+    </listOfSpecies>
+  
+    <listOfParameters>
+      <parameter
+        id="BrAC"
+        constant="false"
+        units="_g__L"
+        metaid="mod1::BrAC"
+        >
+      </parameter>
+      <parameter
+        id="sigma1"
+        constant="false"
+        metaid="mod1::sigma1"
+        >
+      </parameter>
+      <parameter
+        id="k_a"
+        constant="true"
+        value="0.062"
+        units="__h"
+        metaid="mod1::k_a"
+        >
+      </parameter>
+      <parameter
+        id="Vd"
+        constant="true"
+        value="0.457"
+        units="__kg_L"
+        metaid="mod1::Vd"
+        >
+      </parameter>
+      <parameter
+        id="Vmax"
+        constant="true"
+        value="0.136"
+        units="__h_g__L"
+        metaid="mod1::Vmax"
+        >
+      </parameter>
+      <parameter
+        id="Km"
+        constant="true"
+        value="0.096"
+        units="_g__L"
+        metaid="mod1::Km"
+        >
+      </parameter>
+      <parameter
+        id="body_weight"
+        constant="true"
+        value="70"
+        units="_kg"
+        metaid="mod1::body_weight"
+        >
+      </parameter>
+      <parameter
+        id="dose_first"
+        constant="true"
+        value="0.186"
+        units="__kg_g"
+        metaid="mod1::dose_first"
+        >
+      </parameter>
+      <parameter
+        id="dose_last"
+        constant="true"
+        value="0.112"
+        units="__kg_g"
+        metaid="mod1::dose_last"
+        >
+      </parameter>
+      <parameter
+        id="sigma_add"
+        constant="true"
+        value="0.1"
+        metaid="mod1::sigma_add"
+        >
+      </parameter>
+      <parameter
+        id="sigma_prop"
+        constant="true"
+        value="0"
+        metaid="mod1::sigma_prop"
+        >
+      </parameter>
+    </listOfParameters>
+  
+    <listOfReactions>
+      <reaction
+        id="vabs"
+        reversible="false"
+        fast="false"
+        metaid="mod1::vabs"
+        >
+        <listOfReactants>
+          <speciesReference species="q_a" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="C" stoichiometry="1"/>
+        </listOfProducts>
+        <listOfModifiers>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><ci>k_a</ci><ci>q_a</ci></apply></math>
+        </kineticLaw>
+      </reaction>
+      <reaction
+        id="vel"
+        reversible="false"
+        fast="false"
+        metaid="mod1::vel"
+        >
+        <listOfReactants>
+          <speciesReference species="C" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+        </listOfProducts>
+        <listOfModifiers>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+              <apply>
+                <divide/>
+                  <apply>
+                    <times/>
+                    <cn> 1  </cn>
+                    <ci> C </ci>
+                    <ci> Vmax </ci>
+                  </apply>
+                  <apply>
+                    <plus/>
+                    <ci>Km</ci>
+                    <ci>C</ci>
+                  </apply>
+              </apply>
+              <ci>blood</ci>
+          </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  
+  <listOfRules>
+    <assignmentRule
+      variable="BrAC"
+      metaid="mod1::BrAC::ode_"
+      >
+      <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><divide/><ci>C</ci><cn>1</cn></apply></math>
+    </assignmentRule>
+    <assignmentRule
+      variable="sigma1"
+      metaid="mod1::sigma1::ode_"
+      >
+      <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><root/><apply><plus/><apply><power/><ci>sigma_add</ci><cn>2</cn></apply><apply><times/><apply><power/><ci>BrAC</ci><cn>2</cn></apply><apply><power/><ci>sigma_prop</ci><cn>2</cn></apply></apply></apply></apply></math>
+    </assignmentRule>
+  
+  </listOfRules>
+  
+    <listOfInitialAssignments>
+      <initialAssignment
+        symbol="blood"
+        metaid="mod1::blood::start_"
+        >
+        <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><times/><cn> 1 </cn><ci>Vd</ci><ci>body_weight</ci></apply></math>
+      </initialAssignment>
+    </listOfInitialAssignments>
+  
+    <listOfEvents>
+      <event
+        id="adm1"
+        metaid="mod1::adm1"
+        >
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><and/>
+              <true/>
+              <apply><geq/>
+                <csymbol definitionURL="http://www.sbml.org/sbml/symbols/time">t</csymbol>
+                <cn>0</cn>
+              </apply>
+              
+              
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          
+          <eventAssignment
+            variable="q_a"
+            metaid="mod1::q_a::adm1">
+            <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><plus/><ci>q_a</ci><apply><times/><ci>dose_first</ci><ci>body_weight</ci></apply></apply></math>
+          </eventAssignment>
+          
+        </listOfEventAssignments>
+      </event>
+      <event
+        id="adm2"
+        metaid="mod1::adm2"
+        >
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><and/>
+              <true/>
+              <apply><geq/>
+                <csymbol definitionURL="http://www.sbml.org/sbml/symbols/time">t</csymbol>
+                <cn>0.333</cn>
+              </apply>
+              
+              
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          
+          <eventAssignment
+            variable="q_a"
+            metaid="mod1::q_a::adm2">
+            <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><plus/><ci>q_a</ci><apply><times/><ci>dose_first</ci><ci>body_weight</ci></apply></apply></math>
+          </eventAssignment>
+          
+        </listOfEventAssignments>
+      </event>
+      <event
+        id="adm3"
+        metaid="mod1::adm3"
+        >
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><and/>
+              <true/>
+              <apply><geq/>
+                <csymbol definitionURL="http://www.sbml.org/sbml/symbols/time">t</csymbol>
+                <cn>0.667</cn>
+              </apply>
+              
+              
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          
+          <eventAssignment
+            variable="q_a"
+            metaid="mod1::q_a::adm3">
+            <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><plus/><ci>q_a</ci><apply><times/><ci>dose_first</ci><ci>body_weight</ci></apply></apply></math>
+          </eventAssignment>
+          
+        </listOfEventAssignments>
+      </event>
+      <event
+        id="adm4"
+        metaid="mod1::adm4"
+        >
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply><and/>
+              <true/>
+              <apply><geq/>
+                <csymbol definitionURL="http://www.sbml.org/sbml/symbols/time">t</csymbol>
+                <cn>1.5</cn>
+              </apply>
+              
+              
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          
+          <eventAssignment
+            variable="q_a"
+            metaid="mod1::q_a::adm4">
+            <math xmlns="http://www.w3.org/1998/Math/MathML"><apply><plus/><ci>q_a</ci><apply><times/><ci>dose_last</ci><ci>body_weight</ci></apply></apply></math>
+          </eventAssignment>
+          
+        </listOfEventAssignments>
+      </event>
+    </listOfEvents>
+  
+<!-- UNIT DEFINITIONS -->
+<listOfUnitDefinitions>
+  <unitDefinition id="_h" name="h">
+  <listOfUnits>
+    <unit kind="second" exponent="1" scale="3" multiplier="3.6"/>
+  </listOfUnits>
+</unitDefinition>
+  <unitDefinition id="_L" name="L">
+  <listOfUnits>
+    <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+  </listOfUnits>
+</unitDefinition>
+  <unitDefinition id="_g" name="g">
+  <listOfUnits>
+    <unit kind="kilogram" exponent="1" scale="-3" multiplier="1"/>
+  </listOfUnits>
+</unitDefinition>
+  <unitDefinition id="_g__L" name="g/L">
+  <listOfUnits>
+    <unit kind="kilogram" exponent="1" scale="-3" multiplier="1"/>
+    <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+  </listOfUnits>
+</unitDefinition>
+  <unitDefinition id="__h_g" name="g/h">
+  <listOfUnits>
+    <unit kind="kilogram" exponent="1" scale="-3" multiplier="1"/>
+    <unit kind="second" exponent="-1" scale="3" multiplier="3.6"/>
+  </listOfUnits>
+</unitDefinition>
+  <unitDefinition id="__h" name="1/h">
+  <listOfUnits>
+    <unit kind="second" exponent="-1" scale="3" multiplier="3.6"/>
+  </listOfUnits>
+</unitDefinition>
+  <unitDefinition id="__kg_L" name="L/kg">
+  <listOfUnits>
+    <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+    <unit kind="kilogram" exponent="-1" scale="0" multiplier="1"/>
+  </listOfUnits>
+</unitDefinition>
+  <unitDefinition id="__h_g__L" name="g/L/h">
+  <listOfUnits>
+    <unit kind="kilogram" exponent="1" scale="-3" multiplier="1"/>
+    <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+    <unit kind="second" exponent="-1" scale="3" multiplier="3.6"/>
+  </listOfUnits>
+</unitDefinition>
+  <unitDefinition id="_kg" name="kg">
+  <listOfUnits>
+    <unit kind="kilogram" exponent="1" scale="0" multiplier="1"/>
+  </listOfUnits>
+</unitDefinition>
+  <unitDefinition id="__kg_g" name="g/kg">
+  <listOfUnits>
+    <unit kind="dimensionless" exponent="1" scale="-3" multiplier="1"/>
+  </listOfUnits>
+</unitDefinition>
+</listOfUnitDefinitions>
+  
+  </model>
+</sbml>

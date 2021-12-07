@@ -4,13 +4,13 @@ namespace mod1 begin
     gut @Compartment {units: L} .= 1; // not used
     blood @Compartment {units: L} .= Vd * body_weight;
 
-    q_a @Species {compartment: gut, isAmount: true, units: g} .= 0;
-    C @Species {compartment: blood, units: g/L} .= 0;
+    q_a @Species {compartment: gut, isAmount: true, units: g, output: true} .= 0;
+    C @Species {compartment: blood, units: g/L, output: true} .= 0;
 
     BrAC @Record {units: g/L, output: true} := C / 1;
 
     vabs @Reaction { actors: q_a => C, units: g/h } := k_a * q_a;
-    vel @Reaction { actors: C =>, units: g/h } := Vmax * C / (Km + abs(C)) * blood;
+    vel @Reaction { actors: C =>, units: g/h } := Vmax * C / (Km + C) * blood;
 
     k_a @Const {units: 1/h} = 0.062; // 8.33
     Vd @Const {units: L/kg} = 0.457; // 0.58
@@ -33,5 +33,5 @@ namespace mod1 begin
 
     sigma_add @Const = 0.1; // 6.8e-7
     sigma_prop @Const = 0; // 0.081
-    sigma1 @Record {output: true} := sqrt(sigma_add^2 + BrAC^2 * sigma_prop^2);
+    sigma1 @Record {output: true} := sqrt(sigma_add^2 + C^2 * sigma_prop^2);
 end

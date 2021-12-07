@@ -1,0 +1,3 @@
+observableId	observableName	observableFormula	noiseFormula	observableTransformation	noiseDistribution
+BrAC		BrAC	noiseParameter1_BrAC	lin	normal
+sigma1		sigma1

@@ -1,0 +1,5 @@
+parameterId	parameterScale	lowerBound	upperBound	nominalValue	estimate
+Km	lin	1.00E-06	1.00E+06	0.096	1
+k_a	lin	1.00E-06	1.00E+06	0.062	1
+Vd	lin	1.00E-06	1.00E+06	0.457	1
+Vmax	lin	1.00E-06	1.00E+06	0.136	1
